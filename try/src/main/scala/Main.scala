@@ -4,6 +4,7 @@ object Test {
   case class Person1(person1: String) extends Person
   case class Person2(person2: String, word: String) extends Person
 
+  //type class
   trait PersonPrinter[A <: Person] {
     def print(person: A): Unit
   }
@@ -17,7 +18,6 @@ object Test {
       println(person.person2 + person.word)
     }
   }
-
   def printer[A](person: A)(implicit printer: PersonPrinter[A]): Unit = {
     printer.print(person)
   }
@@ -25,6 +25,25 @@ object Test {
     val person = Person2("test2", "word")
     printer(person)
   }
+
+}
+//pattern matching
+object Test2 {
+  sealed trait Person
+  case class Person1(person1: String) extends Person
+  case class Person2(person2: String, word: String) extends Person
+
+  def printer(person: Person): Unit = {
+    person match {
+      case Person1(person1)       => print(person1)
+      case Person2(person2, word) => print(person2 + word)
+    }
+  }
+  def main(args: Array[String]): Unit = {
+    val person = Person2("test2", "word")
+    printer(person)
+  }
+
 }
 
 //java
