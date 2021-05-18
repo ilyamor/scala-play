@@ -1,14 +1,12 @@
-ThisBuild / scalaVersion     := "2.13.5"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+val scala3Version = "3.0.0-RC3"
 
-lazy val root = (project in file("."))
+lazy val root = project
+  .in(file("."))
   .settings(
-    name := "try",
-    libraryDependencies ++= Seq(
-      "dev.zio" %% "zio" % "1.0.7",
-      "dev.zio" %% "zio-test" % "1.0.7" % Test
-    ),
-    testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
+    name := "scala3-simple",
+    version := "0.1.0",
+
+    scalaVersion := scala3Version,
+
+    libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % "test"
   )
